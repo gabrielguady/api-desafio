@@ -1,0 +1,91 @@
+services:
+  postgres-api-desafio:
+    image: postgres:17
+    hostname: postgres-api-desafio
+    ports:
+      - "5433:5432"
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=apiDesafio
+      - POSTGRES_PASSWORD=123456
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  pgadmin-api-desafio:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "user@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "14549:80"
+    depends_on:
+      - postgres-api-desafio
+    networks:
+      - app-network
+
+
+  backend:
+    build:
+      context: 'C:/Users/blonded/PycharmProjects/api_desafio'
+      dockerfile: Dockerfile
+    container_name: django_app
+    restart: on-failure
+    volumes:
+      - C:/Users/blonded/PycharmProjects/api_desafio:/app
+    environment:
+      - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//
+    env_file:
+      - .env
+
+    command: [ "sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000" ]
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network
+
+  worker:
+    build:
+      context: 'C:/Users/blonded/PycharmProjects/api_desafio'
+      dockerfile: Dockerfile
+    container_name: celery_worker
+    restart: on-failure
+    command: celery -A api_desafio worker --loglevel=info  --pool=solo
+    depends_on:
+      - backend
+      - rabbitmq
+    env_file:
+      - .env
+    environment:
+      - DJANGO_SETTINGS_MODULE=api_desafio.settings
+    volumes:
+      - .:/app
+    networks:
+      - app-network
+
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    hostname: rabbitmq
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    networks:
+      - app-network
+
+
+volumes:
+  db-data:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge
