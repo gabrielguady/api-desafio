@@ -27,6 +27,9 @@ frontend:
     - C:/CAMINHO/ATUAL/DO/FRONTEND:/app
 
 
+TEM QUE SER O PATH DE ONDE ESTÁ A PASTA
+
+
 ⚙️ PASSO 2: Subir com Docker
 cd backend
 docker-compose up --build
