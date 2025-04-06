@@ -43,5 +43,7 @@ docker-compose up --build
  coloque essa url no seu browser: http://localhost:4200/calcular
 
  🧪 Testes
+
+ execute esse comando no terminal docker: 
  
  docker-compose exec backend pytest
