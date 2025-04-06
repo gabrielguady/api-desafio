@@ -9,15 +9,20 @@
 No arquivo backend/docker-compose.yml, troque:
 
 build:
+
   context: 'C:/CAMINHO/ATUAL/DO/BACKEND'
+  
 volumes:
+
   - C:/CAMINHO/ATUAL/DO/BACKEND:/app
+
 frontend:
   build:
     context: 'C:/CAMINHO/ATUAL/DO/FRONTEND'
   volumes:
     - C:/CAMINHO/ATUAL/DO/FRONTEND:/app
-   
+
+
 ⚙️ PASSO 2: Subir com Docker
 cd backend
 docker-compose up --build
