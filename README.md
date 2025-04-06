@@ -55,7 +55,7 @@ Endpoints:
 
 POST /processar: recebe três números e inicia o processamento assíncrono (média e mediana).
 
-GET /status/{id}: retorna o status atual do processamento, incluindo status, media, mediana e os três números originais.
+GET {id}/status/: retorna o status atual do processamento, incluindo status, media, mediana e os três números originais.
 
 Assíncrono com Celery:
 
