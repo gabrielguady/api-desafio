@@ -2,7 +2,7 @@
 
 ## Estrutura dos repositórios
 - 🔙 Backend (este repositório)
-- 🔜 Frontend: [Link para o repositório do frontend]([https://github.com/seu-usuario/frontend-repo](https://github.com/gabrielguady/frontend-desafio.git))
+- 🔜 Frontend: https://github.com/gabrielguady/frontend-desafio.git
 
 ⚠️ PASSO 1: Ajustar caminhos no docker-compose.yml
 
