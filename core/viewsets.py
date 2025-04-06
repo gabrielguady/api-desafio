@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND
 
 from core import models, serializers, tasks
+from core.exceptions import RabbitMQPublishException, ProcessamentoNotFoundException
 
 
 class ProcessamentoViewSet(viewsets.ModelViewSet):
@@ -22,7 +23,7 @@ class ProcessamentoViewSet(viewsets.ModelViewSet):
             }
             return Response(data, status=HTTP_200_OK)
         except models.Processamento.DoesNotExist:
-            return Response({"detail": "Processamento não encontrado."}, status=HTTP_404_NOT_FOUND)
+            raise ProcessamentoNotFoundException()
 
     @action(detail=False, methods=['post'])
     def processar(self, request):
@@ -45,8 +46,5 @@ class ProcessamentoViewSet(viewsets.ModelViewSet):
                 serializer.validated_data["numero3"]
             )
             return Response({"id": id_processamento, "status": "Processando"}, status=status.HTTP_201_CREATED)
-        except Exception as e:
-            return Response(
-                {"error": "Falha ao enviar para o RabbitMQ"},
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
+        except Exception:
+            raise RabbitMQPublishException()
