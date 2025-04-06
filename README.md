@@ -17,9 +17,13 @@ volumes:
   - C:/CAMINHO/ATUAL/DO/BACKEND:/app
 
 frontend:
+
   build:
+  
     context: 'C:/CAMINHO/ATUAL/DO/FRONTEND'
+    
   volumes:
+  
     - C:/CAMINHO/ATUAL/DO/FRONTEND:/app
 
 
