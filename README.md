@@ -5,7 +5,9 @@
 - 🔜 Frontend: [Link para o repositório do frontend]([https://github.com/seu-usuario/frontend-repo](https://github.com/gabrielguady/frontend-desafio.git))
 
 ⚠️ PASSO 1: Ajustar caminhos no docker-compose.yml
+
 No arquivo backend/docker-compose.yml, troque:
+
 build:
   context: 'C:/CAMINHO/ATUAL/DO/BACKEND'
 volumes:
