@@ -63,7 +63,7 @@ Task é enfileirada no RabbitMQ.
 
 O worker processa os dados e atualiza o status no banco (de "Processando..." para "Concluído").
 
-Banco de dados: PostgreSQL na porta 5433.
+Banco de dados: PostgreSQL na porta 5432.
 
 Gerenciamento: Migrations automáticos no entrypoint (command do Docker).
 
