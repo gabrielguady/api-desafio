@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'channels',
+    'pytest'
 
 
 ]
@@ -131,6 +132,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 CORS_ALLOW_ALL_ORIGINS=True
+
+
 
 CELERY_BROKER_URL = "amqp://guest:guest@rabbitmq:5672//"
 CELERY_ACCEPT_CONTENT = ["json"]

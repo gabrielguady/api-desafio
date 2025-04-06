@@ -7,7 +7,7 @@ router = routers.DefaultRouter()
 
 
 
-router.register('numeros',viewsets.ProcessamentoViewSet)
+router.register('numeros',viewsets.ProcessamentoViewSet, basename='processamento')
 
 
 urlpatterns = router.urls

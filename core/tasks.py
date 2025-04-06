@@ -1,10 +1,12 @@
 from celery import shared_task
+
 from core import models
 
 
 @shared_task
 def media(processamento_id, num1, num2, num3):
     resultado = (num1 + num2 + num3) / 3
+    resultado = round(resultado, 2)
     save_resultado.delay({
         'processamento_id': processamento_id,
         'media': resultado
@@ -34,7 +36,3 @@ def save_resultado(params: dict):
         processamento.status = "Concluído"
 
     processamento.save()
-
-
-
-
