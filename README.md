@@ -31,11 +31,17 @@ TEM QUE SER O PATH DE ONDE ESTÁ A PASTA
 
 
 ⚙️ PASSO 2: Subir com Docker
+
 cd backend
+
 docker-compose up --build
 
+
+
 ✅ FUNCIONAMENTO
+
  coloque essa url no seu browser: http://localhost:4200
 
  🧪 Testes
+ 
  docker-compose exec backend pytest
