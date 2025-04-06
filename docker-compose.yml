@@ -46,6 +46,22 @@ services:
     networks:
       - app-network
 
+
+  frontend:
+    build:
+      context: 'C:/Users/blonded/WebstormProjects/untitled5'
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    volumes:
+      - C:/Users/blonded/WebstormProjects/untitled5:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+
   worker:
     build:
       context: 'C:/Users/blonded/PycharmProjects/api_desafio'
