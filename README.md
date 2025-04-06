@@ -40,7 +40,7 @@ docker-compose up --build
 
 ✅ FUNCIONAMENTO
 
- coloque essa url no seu browser: http://localhost:4200
+ coloque essa url no seu browser: http://localhost:4200/calcular
 
  🧪 Testes
  
